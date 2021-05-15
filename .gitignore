@@ -1,4 +1,4 @@
 .ninja_log
+.ninja_deps
 out
 obj/
-

@@ -2,10 +2,11 @@
 #define MAIN_GAME
 
 #include "Engine/InputManager.hpp"
-#include "Game/Game.hpp"
-#include "Game/MainMenu.hpp"
-#include "Game/SongSelect.hpp"
-#include "Game/GameState.hpp"
+#include "SharedMemory.hpp"
+#include "Game.hpp"
+#include "MainMenu.hpp"
+#include "SongSelect.hpp"
+#include "GameState.hpp"
 
 
 struct MainGame {
@@ -15,16 +16,18 @@ struct MainGame {
      void init();
      void gameloop();
      void cleanUp();
+     void initSharedMemory();
 
      // SFML Objects
      sf::RenderWindow window;
 
      // Engine Objects
-     GameState state = GameState::MENU;
+     GameState state = GameState::GAME;
      InputManager manager;
      Game game;
      MainMenu menu;
      SongSelect select;
+     SharedMemory memory;
 
 };
 

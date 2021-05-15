@@ -8,10 +8,12 @@ rule lnk
   command = clang++ $in -o $out $lflags
 
 build obj/main.o: cc main.cpp
-build obj/maingame.o: cc MainGame.cpp
-build obj/inputmanager.o: cc Engine/InputManager.cpp
+build obj/maingame.o: cc Game/MainGame.cpp
+build obj/inputmanager.o: cc Game/Engine/InputManager.cpp
 build obj/game.o: cc Game/Game.cpp
 build obj/menu.o: cc Game/MainMenu.cpp
 build obj/select.o: cc Game/SongSelect.cpp
+build obj/button.o: cc Game/Engine/Button.cpp
+build obj/utils.o: cc Game/Engine/Utils.cpp
 
-build out: lnk obj/main.o obj/maingame.o obj/inputmanager.o obj/game.o obj/select.o obj/menu.o
+build out: lnk obj/main.o obj/maingame.o obj/inputmanager.o obj/game.o obj/select.o obj/menu.o obj/button.o obj/utils.o

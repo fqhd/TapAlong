@@ -8,9 +8,10 @@ void MainGame::start(){
 }
 
 void MainGame::init(){
-     window.create(sf::VideoMode(1280, 720), "TapAlong", sf::Style::Default);
+	initSharedMemory();
+     window.create(sf::VideoMode(memory.windowWidth, memory.windowHeight), "TapAlong", sf::Style::Default);
      window.setVerticalSyncEnabled(true);
-     game.init();
+     game.init(memory);
      menu.init();
      select.init();
 }
@@ -30,8 +31,8 @@ void MainGame::gameloop(){
                     select.render();
                break;
                case GameState::GAME:
-                    game.update();
-                    game.render();
+                    game.update(manager);
+                    game.render(window);
                break;
           }
 
@@ -43,4 +44,8 @@ void MainGame::cleanUp(){
      game.cleanUp();
      menu.cleanUp();
      select.cleanUp();
+}
+
+void MainGame::initSharedMemory(){
+     memory.font.loadFromFile("res/fonts/berlin.ttf");
 }
