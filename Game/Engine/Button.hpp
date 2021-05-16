@@ -7,11 +7,11 @@
 struct Button {
 
      void init(unsigned int x, unsigned int y, unsigned int w, unsigned int h, const std::string& string, const sf::Font& font);
-     void update(InputManager& manager);
+     void update(InputManager& manager, float deltaTime);
      void render(sf::RenderWindow& window);
 
-
      sf::FloatRect targetSize;
+	sf::FloatRect originalSize;
      sf::RectangleShape body;
      sf::RectangleShape shadow;
 	sf::Text text;

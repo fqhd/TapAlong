@@ -20,6 +20,7 @@ struct MainGame {
 
      // SFML Objects
      sf::RenderWindow window;
+	sf::Clock mainClock;
 
      // Engine Objects
      GameState state = GameState::GAME;

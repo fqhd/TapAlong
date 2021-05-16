@@ -1,12 +1,13 @@
 #include "Game.hpp"
 
 void Game::init(const SharedMemory& memory){
-     button.init(100, 100, 200, 40, "BHAAAAIIIE", memory.font);
+
+
 	initBackground(memory);
 }
 
-void Game::update(InputManager& manager){
-     button.update(manager);
+void Game::update(InputManager& manager, float deltaTime){
+	
 }
 
 void Game::render(sf::RenderWindow& window){
@@ -15,7 +16,7 @@ void Game::render(sf::RenderWindow& window){
 	// Entities/Particles
 
 	// UI
-	button.render(window);
+
 }
 
 void Game::cleanUp(){

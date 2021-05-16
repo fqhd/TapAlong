@@ -7,12 +7,10 @@
 struct Game {
 
      void init(const SharedMemory& memory);
-     void update(InputManager& manager);
+     void update(InputManager& manager, float deltaTime);
      void render(sf::RenderWindow& window);
      void cleanUp();
 	void initBackground(const SharedMemory& memory);
-
-     Button button;
 
 	sf::RectangleShape background;
 

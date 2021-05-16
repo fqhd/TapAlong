@@ -9,17 +9,20 @@ void MainGame::start(){
 
 void MainGame::init(){
 	initSharedMemory();
-     window.create(sf::VideoMode(memory.windowWidth, memory.windowHeight), "TapAlong", sf::Style::Default);
+     window.create(sf::VideoMode(memory.windowWidth, memory.windowHeight), "TapAlong", sf::Style::Titlebar | sf::Style::Close);
      window.setVerticalSyncEnabled(true);
+	window.setPosition(sf::Vector2i(0, 0));
      game.init(memory);
      menu.init();
      select.init();
+	mainClock.restart();
 }
 
 void MainGame::gameloop(){
      while(window.isOpen()){
           window.clear();
           manager.processInput(window);
+		float deltaTime = mainClock.restart().asSeconds();
 
           switch(state){
                case GameState::MENU:
@@ -31,7 +34,7 @@ void MainGame::gameloop(){
                     select.render();
                break;
                case GameState::GAME:
-                    game.update(manager);
+                    game.update(manager, deltaTime);
                     game.render(window);
                break;
           }

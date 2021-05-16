@@ -6,11 +6,11 @@
 void Button::init(unsigned int x, unsigned int y, unsigned int w, unsigned int h, const std::string& string, const sf::Font& font){
 
 	body.setSize(sf::Vector2f(w, h));
-	body.setPosition(x - 16, y - 16);
+	body.setPosition(x, y);
 	body.setFillColor(sf::Color(156, 236, 91));
 
      shadow.setSize(sf::Vector2f(w, h));
-     shadow.setPosition(x, y);
+     shadow.setPosition(x + 16, y + 16);
      shadow.setFillColor(sf::Color(23 * 0.8, 23 * 0.8, 56 * 0.8));
 
 	// Text
@@ -24,10 +24,39 @@ void Button::init(unsigned int x, unsigned int y, unsigned int w, unsigned int h
 	sf::FloatRect centeredRect = Utils::centerRect(text.getLocalBounds(), body.getGlobalBounds());
 	text.setPosition(centeredRect.left, centeredRect.top);
 
+	originalSize = body.getGlobalBounds();
+	targetSize = body.getGlobalBounds();
 
 }
 
-void Button::update(InputManager& manager){
+void Button::update(InputManager& manager, float deltaTime){
+	sf::Vector2i mousePos = sf::Mouse::getPosition();
+
+	// Calculating target sizes
+	if(body.getGlobalBounds().contains(mousePos.x, mousePos.y)){
+		targetSize = sf::FloatRect(originalSize.left - 10, originalSize.top - 10, originalSize.width + 20, originalSize.height + 20);
+		if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+			body.setFillColor(sf::Color(126, 206, 61));
+		}else{
+			body.setFillColor(sf::Color(156, 236, 91));
+		}
+	}else{
+		targetSize = originalSize;
+	}
+
+	// Calculating animation delta
+	sf::FloatRect currentPosition = body.getGlobalBounds();
+	sf::FloatRect deltaPosition = Utils::sub(targetSize, currentPosition);
+	sf::FloatRect smoothMovePos = Utils::add(currentPosition, Utils::mul(deltaPosition, 16.0f * deltaTime));
+
+	// Positioning body based on calculated delta
+	body.setPosition(smoothMovePos.left, smoothMovePos.top);
+	body.setSize(sf::Vector2f(smoothMovePos.width, smoothMovePos.height));
+
+	// Positioning Shadow if the button hasn't been pressed
+	shadow.setPosition(smoothMovePos.left + 16, smoothMovePos.top + 16);
+	shadow.setSize(sf::Vector2f(smoothMovePos.width, smoothMovePos.height));
+
 
 }
 
