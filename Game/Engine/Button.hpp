@@ -10,6 +10,7 @@ struct Button {
      void update(InputManager& manager, float deltaTime);
      void render(sf::RenderWindow& window);
 
+	bool isPressed = false;
      sf::FloatRect targetSize;
 	sf::FloatRect originalSize;
      sf::RectangleShape body;

@@ -4,7 +4,7 @@
 #include "Engine/InputManager.hpp"
 #include "SharedMemory.hpp"
 #include "Game.hpp"
-#include "MainMenu.hpp"
+#include "Menu.hpp"
 #include "SongSelect.hpp"
 #include "GameState.hpp"
 
@@ -17,16 +17,18 @@ struct MainGame {
      void gameloop();
      void cleanUp();
      void initSharedMemory();
+	void initFade();
 
      // SFML Objects
      sf::RenderWindow window;
 	sf::Clock mainClock;
+	sf::RectangleShape fade;
 
      // Engine Objects
-     GameState state = GameState::GAME;
+     GameState state = GameState::MENU;
      InputManager manager;
      Game game;
-     MainMenu menu;
+     Menu menu;
      SongSelect select;
      SharedMemory memory;
 

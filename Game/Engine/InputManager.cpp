@@ -1,14 +1,19 @@
 #include "InputManager.hpp"
+#include <iostream>
 
 void InputManager::processInput(sf::RenderWindow& window){
      previousKeymap = keymap;
      while(window.pollEvent(e)) {
           if(e.type == sf::Event::Closed) {
-               window.close();
+			window.close();
           } else if (e.type == sf::Event::KeyPressed) {
                keyPressed(e.key.code);
           } else if (e.type == sf::Event::KeyReleased) {
                keyReleased(e.key.code);
+          } else if (e.type == sf::Event::MouseButtonPressed) {
+               keyPressed(e.mouseButton.button);
+          } else if (e.type == sf::Event::MouseButtonReleased) {
+			keyReleased(e.mouseButton.button);
           }
      }
 }

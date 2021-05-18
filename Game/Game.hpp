@@ -10,9 +10,8 @@ struct Game {
      void update(InputManager& manager, float deltaTime);
      void render(sf::RenderWindow& window);
      void cleanUp();
-	void initBackground(const SharedMemory& memory);
 
-	sf::RectangleShape background;
+
 
 };
 

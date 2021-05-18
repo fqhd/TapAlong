@@ -40,6 +40,11 @@ void Button::update(InputManager& manager, float deltaTime){
 		}else{
 			body.setFillColor(sf::Color(156, 236, 91));
 		}
+		if(manager.isKeyPressed(sf::Mouse::Left)){
+			isPressed = true;
+		}else{
+			isPressed = false;
+		}
 	}else{
 		targetSize = originalSize;
 	}
