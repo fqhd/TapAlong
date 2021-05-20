@@ -6,10 +6,11 @@
 
 struct Button {
 
-     void init(unsigned int x, unsigned int y, unsigned int w, unsigned int h, const std::string& string, const sf::Font& font);
+     void init(unsigned int x, unsigned int y, unsigned int w, unsigned int h, const std::string& string, const sf::Font& font, bool textured = false);
      void update(InputManager& manager, float deltaTime);
      void render(sf::RenderWindow& window);
 
+	bool isTextured = false;
 	bool isPressed = false;
      sf::FloatRect targetSize;
 	sf::FloatRect originalSize;

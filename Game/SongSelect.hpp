@@ -3,17 +3,22 @@
 
 #include "SharedMemory.hpp"
 #include "Engine/InputManager.hpp"
+#include "Engine/Button.hpp"
+#include "Song.hpp"
+#include <vector>
 
 struct SongSelect {
 
      void init(const SharedMemory& memory);
-     void update(InputManager& manager, float deltaTime);
+     void update(InputManager& manager, SharedMemory& memory, float deltaTime);
      void render(sf::RenderWindow& window);
      void cleanUp();
 	void loadSongs();
 
-	std::vector<sf::Texture> textures;
-	std::vector<Button> buttons;
+	Button playButton;
+	Button backButton;
+	std::vector<Song*> songs;
+
 
 
 };

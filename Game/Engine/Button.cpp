@@ -3,8 +3,9 @@
 #include <iostream>
 
 
-void Button::init(unsigned int x, unsigned int y, unsigned int w, unsigned int h, const std::string& string, const sf::Font& font){
+void Button::init(unsigned int x, unsigned int y, unsigned int w, unsigned int h, const std::string& string, const sf::Font& font, bool textured){
 
+	isTextured = textured;
 	body.setSize(sf::Vector2f(w, h));
 	body.setPosition(x, y);
 	body.setFillColor(sf::Color(156, 236, 91));
@@ -31,14 +32,23 @@ void Button::init(unsigned int x, unsigned int y, unsigned int w, unsigned int h
 
 void Button::update(InputManager& manager, float deltaTime){
 	sf::Vector2i mousePos = sf::Mouse::getPosition();
+	if(isTextured){
+		body.setFillColor(sf::Color::White);
+	}else{
+		body.setFillColor(sf::Color(156, 236, 91));
+	}
 
 	// Calculating target sizes
 	if(body.getGlobalBounds().contains(mousePos.x, mousePos.y)){
 		targetSize = sf::FloatRect(originalSize.left - 10, originalSize.top - 10, originalSize.width + 20, originalSize.height + 20);
-		if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-			body.setFillColor(sf::Color(126, 206, 61));
+		if(isTextured){
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+				body.setFillColor(Utils::mul(sf::Color::White, 0.8f));
+			}
 		}else{
-			body.setFillColor(sf::Color(156, 236, 91));
+			if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+				body.setFillColor(sf::Color(126, 206, 61));
+			}
 		}
 		if(manager.isKeyPressed(sf::Mouse::Left)){
 			isPressed = true;

@@ -13,6 +13,7 @@ namespace Utils {
 	sf::FloatRect sub(const sf::FloatRect& a, float scalar);
 	sf::FloatRect sub(const sf::FloatRect& a, const sf::FloatRect& b);
 
+	sf::Color mul(const sf::Color& color, float scalar);
 
 
 }

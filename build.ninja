@@ -15,5 +15,6 @@ build obj/menu.o: cc Game/Menu.cpp
 build obj/select.o: cc Game/SongSelect.cpp
 build obj/button.o: cc Game/Engine/Button.cpp
 build obj/utils.o: cc Game/Engine/Utils.cpp
+build obj/song.o: cc Game/Song.cpp
 
-build out: lnk obj/main.o obj/maingame.o obj/inputmanager.o obj/game.o obj/select.o obj/menu.o obj/button.o obj/utils.o
+build out: lnk obj/main.o obj/maingame.o obj/inputmanager.o obj/game.o obj/select.o obj/menu.o obj/button.o obj/utils.o obj/song.o

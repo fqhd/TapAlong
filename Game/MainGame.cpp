@@ -37,13 +37,16 @@ void MainGame::gameloop(){
                     menu.render(window);
                break;
                case GameState::SONG_SELECT:
-                    select.update(manager, deltaTime);
+                    select.update(manager, memory, deltaTime);
                     select.render(window);
                break;
                case GameState::GAME:
                     game.update(manager, deltaTime);
                     game.render(window);
                break;
+			case GameState::EXIT:
+				window.close();
+			break;
           }
 
 		// Update fade

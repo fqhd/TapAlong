@@ -15,6 +15,17 @@ sf::FloatRect Utils::centerRect(const sf::FloatRect& a, const sf::FloatRect& b){
 	return result;
 }
 
+sf::Color Utils::mul(const sf::Color& color, float scalar){
+	sf::Color result;
+
+	result.r = color.r * scalar;
+	result.g = color.g * scalar;
+	result.b = color.b * scalar;
+
+	return result;
+}
+
+
 sf::FloatRect Utils::mul(const sf::FloatRect& a, float scalar){
 	sf::FloatRect result;
 
